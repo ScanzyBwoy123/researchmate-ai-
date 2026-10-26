@@ -79,77 +79,82 @@ function setStatus(elements, message, state) {
   });
 }
 function initializeResearchOutline() {
-  const form =
-    document.getElementById("researchForm") ||
-    document.getElementById("outlineForm");
-  if (!form) {
-    console.info("Research outline form was not found on this page.");
-    return;
-  }
-  form.addEventListener("submit", async (event) => {
-    event.preventDefault();
-    const topicInput =
-      form.querySelector('[name="topic"]') ||
-      document.getElementById("researchTopic") ||
-      document.getElementById("topic");
-    const levelInput =
-      form.querySelector('[name="level"]') ||
-      document.getElementById("academicLevel");
-    const typeInput =
-      form.querySelector('[name="type"]') ||
-      document.getElementById("researchType");
-    const topic = topicInput?.value.trim();
-    if (!topic) {
-      showMessage("Please enter your research topic.", "error");
-      topicInput?.focus();
-      return;
-    }
-    const submitButton = form.querySelector(
-      'button[type="submit"], input[type="submit"]'
-    );
-    const originalButtonText = submitButton
-      ? submitButton.textContent
-      : "";
-    if (submitButton) {
-      submitButton.disabled = true;
-      submitButton.textContent = "Generating outline...";
-    }
-    showMessage("ResearchMate AI is preparing your outline...", "loading");
-    try {
-      const response = await fetch(
-        `${API_BASE_URL}/api/research/outline`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify({
-            topic,
-            academicLevel: levelInput?.value || "undergraduate",
-            researchType: typeInput?.value || "general"
-          })
-        }
-      );
-      const data = await response.json();
-      if (!response.ok || data.success === false) {
-        throw new Error(
-          data.message || data.error || "Could not generate the outline."
+  const forms = [
+    document.getElementById("researchForm"),
+    document.getElementById("quickResearchForm")
+  ].filter(Boolean);
+  forms.forEach((form) => {
+    form.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      const topicInput =
+        form.querySelector('[name="topic"]');
+      const topic = topicInput?.value.trim();
+      if (!topic) {
+        alert("Please enter your research topic.");
+        return;
+      }
+      const typeInput = form.querySelector('[name="researchType"]');
+      const levelInput = form.querySelector('[name="level"]');
+      const fieldInput = form.querySelector('[name="field"]');
+      const button = form.querySelector('button[type="submit"]');
+      const originalText = button?.textContent;
+      if (button) {
+        button.disabled = true;
+        button.textContent = "Building outline...";
+      }
+      try {
+        const response = await fetch(
+          `${API_BASE_URL}/api/research/outline`,
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+              topic,
+              researchType: typeInput?.value || "research-proposal",
+              academicLevel: levelInput?.value || "Undergraduate",
+              field: fieldInput?.value || ""
+            })
+          }
         );
+        const data = await response.json();
+        if (!response.ok || data.success === false) {
+          throw new Error(
+            data.message || data.error || "Could not build the outline."
+          );
+        }
+        if (form.id === "quickResearchForm") {
+          const plannerLink = document.querySelector(
+            '[data-page="research-planner"]'
+          );
+          if (plannerLink) {
+            plannerLink.click();
+          }
+          const plannerTopic = document.getElementById("researchTopic");
+          if (plannerTopic) {
+            plannerTopic.value = topic;
+          }
+        }
+        displayOutline(data);
+        const result = document.getElementById("outlineResult");
+        if (result) {
+          result.hidden = false;
+          result.scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+          });
+        }
+      } catch (error) {
+        console.error("Outline generation failed:", error);
+        alert(error.message || "Unable to build the outline. Please try again.");
+      } finally {
+        if (button) {
+          button.disabled = false;
+          button.textContent = originalText || "Build my outline";
+        }
       }
-      displayOutline(data);
-      showMessage("Research outline generated successfully.", "success");
-    } catch (error) {
-      console.error("Research outline request failed:", error);
-      showMessage(
-        error.message || "Unable to generate the outline. Please try again.",
-        "error"
-      );
-    } finally {
-      if (submitButton) {
-        submitButton.disabled = false;
-        submitButton.textContent = originalButtonText;
-      }
-    }
+    });
   });
 }
 function displayOutline(data) {
