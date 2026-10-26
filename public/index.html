@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#10172a">
+  <meta name="description" content="ResearchMate AI — a workspace for academic research planning, literature discovery, data analysis, and scholarly writing.">
+  <title>ResearchMate AI | Research Workspace</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <a class="brand" href="#" aria-label="ResearchMate AI home">
+        <span class="brand-icon">R</span>
+        <span class="brand-copy">
+          <strong>ResearchMate</strong>
+          <small>AI RESEARCH PLATFORM</small>
+        </span>
+      </a>
+      <div class="workspace-label">WORKSPACE</div>
+      <nav class="navigation" aria-label="Main navigation">
+        <a class="nav-link active" href="#overview" data-page="overview">
+          <span class="nav-icon">⌂</span> Overview
+        </a>
+        <a class="nav-link" href="#research-planner" data-page="research-planner">
+          <span class="nav-icon">✎</span> Research Planner
+        </a>
+        <a class="nav-link" href="#literature" data-page="literature">
+          <span class="nav-icon">⌕</span> Literature Discovery
+        </a>
+        <a class="nav-link" href="#analysis" data-page="analysis">
+          <span class="nav-icon">▥</span> Data Analysis
+        </a>
+        <a class="nav-link" href="#verification" data-page="verification">
+          <span class="nav-icon">✓</span> Source Verification
+        </a>
+        <a class="nav-link" href="#writing" data-page="writing">
+          <span class="nav-icon">▤</span> Writing Studio
+        </a>
+        <a class="nav-link" href="#innovation" data-page="innovation">
+          <span class="nav-icon">✧</span> Innovation Lab
+        </a>
+      </nav>
+      <div class="sidebar-bottom">
+        <div class="integrity-card">
+          <span class="integrity-icon">✦</span>
+          <strong>Research with integrity</strong>
+          <p>Evidence matters. Sources should be verifiable, and findings should never be fabricated.</p>
+        </div>
+        <div class="sidebar-footer">RESEARCHMATE AI · EARLY ACCESS</div>
+      </div>
+    </aside>
+    <main class="main-content">
+      <header class="topbar">
+        <button class="menu-button" id="menuButton" aria-label="Open navigation" aria-expanded="false">☰</button>
+        <div class="breadcrumb">Workspace <span>/</span> <strong id="breadcrumbPage">Overview</strong></div>
+        <div class="topbar-status">
+          <span class="status-dot" id="statusDot"></span>
+          <span id="statusText">Checking server...</span>
+        </div>
+      </header>
+      <section class="page-content" id="overviewPage">
+        <div class="welcome-row">
+          <div>
+            <div class="eyebrow"><span></span> YOUR ACADEMIC WORKSPACE</div>
+            <h1>Turn research questions<br class="desktop-break"> into meaningful discoveries.</h1>
+            <p class="welcome-description">Plan your research, organise your thinking, and build a stronger foundation for evidence-based academic work.</p>
+          </div>
+          <div class="welcome-mark" aria-hidden="true">
+            <div class="mark-orbit orbit-one"></div>
+            <div class="mark-orbit orbit-two"></div>
+            <div class="mark-core">R<span>+</span></div>
+          </div>
+        </div>
+        <div class="notice-bar">
+          <span class="notice-symbol">ⓘ</span>
+          <p><strong>Early development stage.</strong> Research planning is available as a template-based prototype. Live AI research, academic database search, and statistical analysis are not yet connected.</p>
+        </div>
+        <div class="section-heading">
+          <div>
+            <h2>Your research toolkit</h2>
+            <p>One workspace. Multiple research disciplines.</p>
+          </div>
+          <span class="prototype-badge">PROTOTYPE</span>
+        </div>
+        <div class="tool-grid">
+          <a class="tool-card featured-card" href="#research-planner" data-page="research-planner">
+            <div class="tool-top">
+              <span class="tool-icon purple">✎</span>
+              <span class="tool-arrow">↗</span>
+            </div>
+            <h3>Research Planner</h3>
+            <p>Develop a structured outline for a proposal, literature review, thesis, or journal article.</p>
+            <span class="tool-action">Open planner <span>→</span></span>
+          </a>
+          <a class="tool-card" href="#literature" data-page="literature">
+            <div class="tool-top">
+              <span class="tool-icon blue">⌕</span>
+              <span class="tool-tag">PLANNED</span>
+            </div>
+            <h3>Literature Discovery</h3>
+            <p>Explore scholarly publications, compare evidence, and investigate research gaps.</p>
+            <span class="tool-action muted-action">Coming in a future stage</span>
+          </a>
+          <a class="tool-card" href="#analysis" data-page="analysis">
+            <div class="tool-top">
+              <span class="tool-icon green">▥</span>
+              <span class="tool-tag">PLANNED</span>
+            </div>
+            <h3>Research Analysis</h3>
+            <p>Prepare datasets for statistical analysis, visualisation, and interpretation.</p>
+            <span class="tool-action muted-action">Coming in a future stage</span>
+          </a>
+          <a class="tool-card" href="#verification" data-page="verification">
+            <div class="tool-top">
+              <span class="tool-icon orange">✓</span>
+              <span class="tool-tag">PLANNED</span>
+            </div>
+            <h3>Source Verification</h3>
+            <p>Check reference details and assess whether sources support research claims.</p>
+            <span class="tool-action muted-action">Coming in a future stage</span>
+          </a>
+          <a class="tool-card" href="#writing" data-page="writing">
+            <div class="tool-top">
+              <span class="tool-icon pink">▤</span>
+              <span class="tool-tag">PLANNED</span>
+            </div>
+            <h3>Writing Studio</h3>
+            <p>Organise academic sections and prepare manuscripts for formatting and review.</p>
+            <span class="tool-action muted-action">Coming in a future stage</span>
+          </a>
+          <a class="tool-card" href="#innovation" data-page="innovation">
+            <div class="tool-top">
+              <span class="tool-icon gold">✧</span>
+              <span class="tool-tag">PLANNED</span>
+            </div>
+            <h3>Innovation Lab</h3>
+            <p>Explore testable ideas, research questions, prototypes, and evaluation plans.</p>
+            <span class="tool-action muted-action">Coming in a future stage</span>
+          </a>
+        </div>
+        <section class="bottom-grid">
+          <div class="panel">
+            <div class="panel-heading">
+              <div>
+                <h2>Start a research project</h2>
+                <p>Begin with a clear topic and a structured plan.</p>
+              </div>
+              <span class="panel-heading-icon">↗</span>
+            </div>
+            <form id="quickResearchForm">
+              <label for="quickTopic">Research topic</label>
+              <input id="quickTopic" name="topic" type="text" maxlength="500" placeholder="e.g. Factors affecting medication adherence" required>
+              <label for="quickType">Project type</label>
+              <select id="quickType" name="researchType">
+                <option value="research-proposal">Research proposal</option>
+                <option value="literature-review">Literature review</option>
+                <option value="thesis">Thesis or dissertation</option>
+                <option value="journal-article">Journal article</option>
+              </select>
+              <button class="primary-button" type="submit">Build my outline <span>→</span></button>
+              <p class="form-hint">Creates a starting structure, not completed academic research.</p>
+            </form>
+          </div>
+          <div class="panel system-panel">
+            <div class="panel-heading">
+              <div>
+                <h2>Platform status</h2>
+                <p>Backend connection and current capabilities.</p>
+              </div>
+              <span class="system-icon">⌘</span>
+            </div>
+            <div class="system-row">
+              <span class="system-indicator" id="apiIndicator"></span>
+              <div><strong>Backend API</strong><small id="apiDescription">Checking connection...</small></div>
+              <span class="system-state" id="apiState">CHECKING</span>
+            </div>
+            <div class="system-row">
+              <span class="system-indicator planned-indicator"></span>
+              <div><strong>Live AI models</strong><small>Not connected yet</small></div>
+              <span class="system-state planned-state">PLANNED</span>
+            </div>
+            <div class="system-row">
+              <span class="system-indicator planned-indicator"></span>
+              <div><strong>Academic search</strong><small>External scholarly sources not connected</small></div>
+              <span class="system-state planned-state">PLANNED</span>
+            </div>
+            <div class="system-note">The interface identifies planned features clearly so you can distinguish working tools from future development.</div>
+          </div>
+        </section>
+        <footer class="page-footer">
+          <span>© 2026 ResearchMate AI</span>
+          <span>Built for responsible research and innovation.</span>
+        </footer>
+      </section>
+      <section class="page-content secondary-page" id="plannerPage" hidden>
+        <div class="eyebrow"><span></span> RESEARCH WORKSPACE</div>
+        <h1>Research Planner</h1>
+        <p class="welcome-description secondary-description">Create a structured starting outline for your academic project.</p>
+        <div class="panel planner-panel">
+          <form id="researchForm">
+            <div class="form-field">
+              <label for="researchTopic">Research topic <span>*</span></label>
+              <textarea id="researchTopic" name="topic" rows="3" maxlength="500" placeholder="Describe the subject you want to investigate..." required></textarea>
+            </div>
+            <div class="form-two-columns">
+              <div class="form-field">
+                <label for="researchType">Research document</label>
+                <select id="researchType" name="researchType">
+                  <option value="research-proposal">Research proposal</option>
+                  <option value="literature-review">Literature review</option>
+                  <option value="thesis">Thesis or dissertation</option>
+                  <option value="journal-article">Journal article</option>
+                </select>
+              </div>
+              <div class="form-field">
+                <label for="researchField">Academic discipline</label>
+                <input id="researchField" name="field" maxlength="100" placeholder="e.g. Nursing, Agriculture, Business">
+              </div>
+            </div>
+            <div class="form-field">
+              <label for="researchLevel">Academic level</label>
+              <select id="researchLevel" name="level">
+                <option value="">Select academic level</option>
+                <option>Certificate / Diploma</option>
+                <option>Undergraduate</option>
+                <option>Master's</option>
+                <option>Doctoral / PhD</option>
+                <option>Professional research</option>
+              </select>
+            </div>
+            <button class="primary-button" type="submit">Generate research outline <span>→</span></button>
+            <p class="form-hint">This early version uses predefined templates. It does not conduct a literature search or generate verified findings.</p>
+          </form>
+        </div>
+        <div class="panel result-panel" id="outlineResult" hidden>
+          <div class="panel-heading">
+            <div><h2>Your research outline</h2><p id="outlineSubtitle"></p></div>
+            <button class="secondary-button" id="copyOutline" type="button">Copy outline</button>
+          </div>
+          <div id="outlineMessage" class="result-message" role="status"></div>
+          <ol id="outlineList" class="outline-list"></ol>
+          <p class="integrity-note" id="integrityNote"></p>
+        </div>
+      </section>
+      <section class="page-content secondary-page placeholder-page" id="placeholderPage" hidden>
+        <div class="eyebrow"><span></span> RESEARCH WORKSPACE</div>
+        <h1 id="placeholderTitle">Research module</h1>
+        <p class="welcome-description secondary-description" id="placeholderDescription"></p>
+        <div class="panel coming-panel">
+          <span class="coming-icon">✧</span>
+          <h2>This module is planned</h2>
+          <p>We are building ResearchMate AI in stages. This module will become available after its functionality has been implemented and tested.</p>
+          <a href="#overview" class="primary-button" data-page="overview">Return to overview <span>→</span></a>
+        </div>
+      </section>
+    </main>
+  </div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="/app.js" defer></script>
+</body>
+</html>
