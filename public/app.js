@@ -22,26 +22,52 @@ function initializeNavigation() {
   });
 }
 async function initializeHealthCheck() {
-  const statusElements = [
-    document.getElementById("serverStatus"),
-    document.getElementById("apiStatus"),
-    document.getElementById("connectionStatus")
-  ].filter(Boolean);
-  setStatus(statusElements, "Checking server...", "loading");
+  const apiDescription = document.getElementById("apiDescription");
+  const apiState = document.getElementById("apiState");
+  const apiIndicator = document.getElementById("apiIndicator");
+  const statusText = document.getElementById("statusText");
+  const statusDot = document.getElementById("statusDot");
+  function updateConnection(message, state) {
+    if (apiDescription) {
+      apiDescription.textContent =
+        state === "success"
+          ? "Backend connected successfully"
+          : state === "error"
+            ? "Unable to connect to backend"
+            : "Checking connection...";
+    }
+    if (apiState) {
+      apiState.textContent =
+        state === "success"
+          ? "ONLINE"
+          : state === "error"
+            ? "OFFLINE"
+            : "CHECKING";
+    }
+    [apiIndicator, statusDot].forEach((element) => {
+      if (!element) return;
+      element.classList.remove("success", "error", "loading");
+      element.classList.add(state);
+    });
+    if (statusText) {
+      statusText.textContent = message;
+    }
+  }
+  updateConnection("Checking server...", "loading");
   try {
     const response = await fetch(`${API_BASE_URL}/api/health`);
     if (!response.ok) {
-      throw new Error(`Server returned HTTP ${response.status}`);
+      throw new Error(`HTTP ${response.status}`);
     }
     const data = await response.json();
     if (data.success && data.status === "healthy") {
-      setStatus(statusElements, "Connected", "success");
+      updateConnection("Backend connected", "success");
     } else {
-      setStatus(statusElements, "Server responded", "warning");
+      throw new Error("Unexpected health-check response");
     }
   } catch (error) {
-    console.error("Health check failed:", error);
-    setStatus(statusElements, "Connection failed", "error");
+    console.error("Backend health check failed:", error);
+    updateConnection("Connection failed", "error");
   }
 }
 function setStatus(elements, message, state) {
