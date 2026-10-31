@@ -8,18 +8,92 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 function initializeNavigation() {
   const navLinks = document.querySelectorAll("[data-page]");
-  const pages = document.querySelectorAll(".page");
-  navLinks.forEach((link) => {
-    link.addEventListener("click", (event) => {
+
+  const overviewPage = document.getElementById("overviewPage");
+  const plannerPage = document.getElementById("plannerPage");
+  const placeholderPage = document.getElementById("placeholderPage");
+
+  const pages = {
+    overview: overviewPage,
+    "research-planner": plannerPage,
+    literature: placeholderPage,
+    analysis: placeholderPage,
+    verification: placeholderPage,
+    writing: placeholderPage,
+    innovation: placeholderPage
+  };
+
+  const pageDetails = {
+    literature: {
+      title: "Literature Discovery",
+      description: "Explore scholarly literature in a future development stage."
+    },
+    analysis: {
+      title: "Research Analysis",
+      description: "Prepare research data for analysis in a future development stage."
+    },
+    verification: {
+      title: "Source Verification",
+      description: "Reference verification is planned for a future development stage."
+    },
+    writing: {
+      title: "Writing Studio",
+      description: "Academic writing tools are planned for a future development stage."
+    },
+    innovation: {
+      title: "Innovation Lab",
+      description: "Research innovation tools are planned for a future development stage."
+    }
+  };
+
+  function showPage(pageName) {
+    const selectedPage = pages[pageName];
+
+    if (!selectedPage) return;
+
+    [overviewPage, plannerPage, placeholderPage].forEach(page => {
+      if (page) page.hidden = page !== selectedPage;
+    });
+
+    navLinks.forEach(link => {
+      link.classList.toggle(
+        "active",
+        link.getAttribute("data-page") === pageName
+      );
+    });
+
+    const breadcrumb = document.getElementById("breadcrumbPage");
+
+    if (breadcrumb) {
+      breadcrumb.textContent =
+        pageName === "research-planner"
+          ? "Research Planner"
+          : pageName === "overview"
+            ? "Overview"
+            : pageDetails[pageName]?.title || "Research Workspace";
+    }
+
+    if (pageName !== "overview" && pageName !== "research-planner") {
+      const details = pageDetails[pageName];
+
+      if (details) {
+        const title = document.getElementById("placeholderTitle");
+        const description = document.getElementById("placeholderDescription");
+
+        if (title) title.textContent = details.title;
+        if (description) description.textContent = details.description;
+      }
+    }
+  }
+
+  navLinks.forEach(link => {
+    link.addEventListener("click", event => {
       event.preventDefault();
-      const targetPage = link.getAttribute("data-page");
-      navLinks.forEach((item) => item.classList.remove("active"));
-      link.classList.add("active");
-      pages.forEach((page) => {
-        page.classList.toggle("active", page.id === targetPage);
-      });
+      showPage(link.getAttribute("data-page"));
     });
   });
+
+  showPage("overview");
 }
 async function initializeHealthCheck() {
   const apiDescription = document.getElementById("apiDescription");
